@@ -8,12 +8,24 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Create an array of doubles with the specified length
+        // 2. Use a loop to fill the array with multiples of the input number
+        // 3. For each index i (0-based), the value will be number * (i + 1)
+        //    because:
+        //    - index 0: number * 1
+        //    - index 1: number * 2
+        //    - ...
+        //    - index length-1: number * length
+        // 4. Return the filled array
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -25,9 +37,26 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Calculate the effective rotation amount 
+        // 2. Find the split point: data.Count - amount
+        // 3. Get the right part that needs to be moved to the front 
+        // 4. Get the left part that needs to be moved after the right part
+        // 5. Combine them by:
+        //    a) First removing the right part from the list
+        //    b) Then inserting it at the beginning
+        // OR:
+        //    a) Create a new list by combining the right part and left part
+        //    b) Clear the original list
+        //    c) Add all items from the new list to the original list
+
+        // Implementation option 1:
+        int splitIndex = data.Count - amount;
+        List<int> rightPart = data.GetRange(splitIndex, amount);
+        List<int> leftPart = data.GetRange(0, splitIndex);
+
+        data.Clear();
+        data.AddRange(rightPart);
+        data.AddRange(leftPart);
     }
 }
